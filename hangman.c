@@ -38,12 +38,12 @@ int main(void){
 	while(misses<7 && hits<wordSize){		//This block actually runs the game.
 		printf("\n    Enter your guess: ");
 		scanf(" %c", &guess );
-		puts("\n\n---------------------------------------------------");
+		puts("\n\n----------------------------------------------------------------");
 
 		if(isalpha(guess)){
 			for(int j=0; j<7; j++){
 				if(toupper(guess)==wrong[j]){
-					printf("\n****You have already guessed that!****\n");
+					printf("****You have already guessed that!****");
 					misses--;
 					break;
 				}
@@ -51,7 +51,7 @@ int main(void){
 			
 			for(int k=0; k<wordSize; k++){
 				if(toupper(guess)==correct[k]){
-					printf("\n****You have already guessed that!****\n");
+					printf("****You have already guessed that!****");
 					hits--;
 					break;
 				}
@@ -66,21 +66,23 @@ int main(void){
 
 		scoreChange=checkGuess(guess, answer);
 
-		if(scoreChange==0){
-			wrong[misses]=toupper(guess);
-			misses++;
-			drawMan(misses);
-			printf("\n\n    Incorrect guesses so far: %s\n", wrong);
-			printf("    Correct guesses so far: %s\n", correct);
-			
-		}
+		{
+			if(scoreChange==0){
+				wrong[misses]=toupper(guess);
+				misses++;
+				drawMan(misses);
+				printf("\n\n    Incorrect guesses so far: %s\n", wrong);
+				printf("    Correct guesses so far: %s\n", correct);
+				
+			}
 
-		else{
-			correct[hits]=toupper(guess);
-			hits=hits+scoreChange;
-			drawMan(misses);
-			printf("\n\n    Incorrect guesses so far: %s\n", wrong);
-			printf("    Correct guesses so far: %s\n", correct);
+			else{
+				correct[hits]=toupper(guess);
+				hits=hits+scoreChange;
+				drawMan(misses);
+				printf("\n\n    Incorrect guesses so far: %s\n", wrong);
+				printf("    Correct guesses so far: %s\n", correct);
+			}
 		}
 
 		printf("\n\n    %s\n\n", fillBlanks(guess, answer, blankSpace));
@@ -88,11 +90,11 @@ int main(void){
 
 	if(misses==7)
 	{
-		printf("The word was: %s! Better luck next time.\n\n", answer);
+		printf("    The word was %s! Better luck next time.\n\n", answer);
 	}
 
 	else if(hits==wordSize){
-		printf("Congratulations! You live another day.\n\n");
+		printf("    Congratulations! You live another day.\n\n");
 	}
 
 	fclose(wordlist);
