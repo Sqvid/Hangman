@@ -1,9 +1,11 @@
 /**************************************************
- * This file contais the source code for the custom
- * functions required by the main code.
+ * This file contais the source code for the
+ * functions required to process the text data and
+ * modify it during runtime.
  *************************************************/
 
 #include "hangman.h"
+
 
 void loadWord(int line_number, FILE *infile, char outputArray[]){ //loads the selected word into a string.
 	int count=0;
