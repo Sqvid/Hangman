@@ -2,8 +2,8 @@
 
 int main(void){
 
-	int lineNumber, wordSize, misses=0, hits=0, i_correct=0, scoreChange;
-	char guess, answer[25], blankSpace[50], correct[25], wrong[7]="      \0";
+	int lineNumber, wordSize, misses=0, hits=0, scoreChange;
+	char guess, answer[25], blankSpace[50], correct[25]="                       \0" , wrong[7]="      \0";
 	FILE *wordlist; 
 	wordlist=fopen("./wordlist.txt", "r");
 	
@@ -36,8 +36,34 @@ int main(void){
 
 
 	while(misses<7 && hits<wordSize){		//This block actually runs the game.
-		printf("\n\n    Enter your guess: ");
+		printf("\n    Enter your guess: ");
 		scanf(" %c", &guess );
+		puts("\n\n---------------------------------------------------");
+
+		if(isalpha(guess)){
+			for(int j=0; j<7; j++){
+				if(toupper(guess)==wrong[j]){
+					printf("\n****You have already guessed that!****\n");
+					misses--;
+					break;
+				}
+			}
+			
+			for(int k=0; k<wordSize; k++){
+				if(toupper(guess)==correct[k]){
+					printf("\n****You have already guessed that!****\n");
+					hits--;
+					break;
+				}
+			}
+		}
+
+		else{
+			puts("\n    Sorry! Only alphabets allowed!");
+			puts("    Using other non-alphabetic characters terminates the game :(\n\n");
+			exit(2);
+		}
+
 		scoreChange=checkGuess(guess, answer);
 
 		if(scoreChange==0){
