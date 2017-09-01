@@ -40,10 +40,12 @@ int main(void){
 
 		if(scoreChange==0){
 			misses++;
+			drawMan(misses);
 		}
 
 		else{
 			hits=hits+scoreChange;
+			drawMan(misses);
 		}
 
 		printf("\n%s\n\n", fillBlanks(guess, answer, blankSpace));
