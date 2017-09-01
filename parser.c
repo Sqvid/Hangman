@@ -7,7 +7,7 @@
 #include "hangman.h"
 
 
-void loadWord(int line_number, FILE *infile, char outputArray[]){ //loads the selected word into a string.
+void loadWord(int line_number, FILE *infile, char outputArray[]){		//loads the selected word into a string.
 	int count=0;
 	char result[512];
 
@@ -34,7 +34,7 @@ void loadWord(int line_number, FILE *infile, char outputArray[]){ //loads the se
 char* fillBlanks(char guess, char* answer, char blanks[]){
 	int wordSize=strlen(answer);
 
-	for(int i=0; i<=(wordSize-1); i++){ //wordsize - 1 becaue arrays count from 0.
+	for(int i=0; i<=(wordSize-1); i++){		//wordsize - 1 becaue arrays count from 0.
 		if(answer[i]==guess){
 			blanks[2*i]=guess;
 		}
@@ -44,12 +44,12 @@ char* fillBlanks(char guess, char* answer, char blanks[]){
 }
 
 
-int checkGuess(char guess, char* answer){ //Checks if a guess is a hit or a miss.
+int checkGuess(char guess, char* answer){		//Checks if a guess is a hit or a miss.
 	int wordSize=strlen(answer), count=0;
 
-	for(int i=0; i<=(wordSize-1); i++){ //wordsize - 1 becaue arrays count from 0.
+	for(int i=0; i<=(wordSize-1); i++){		//wordsize - 1 becaue arrays count from 0.
 		if(answer[i]==guess){
-			count++; //Guess was successful.
+			count++; 			//Guess was successful.
 		}
 	}
 

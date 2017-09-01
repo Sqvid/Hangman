@@ -31,7 +31,7 @@ int main(void){
 	}
 
 	printf("\n%s\n\n\n", blankSpace);
-
+	drawMan(0);
 
 	while(misses<7 && hits<wordSize){		//This block actually runs the game.
 		printf("Enter your guess: ");

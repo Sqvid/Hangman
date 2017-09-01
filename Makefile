@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-Wall --std=c99
-OBJ=hangman.o parser.o
+OBJ=hangman.o parser.o graphics.o
 EXE=hangman
 DBGFLAGS=-g
 
