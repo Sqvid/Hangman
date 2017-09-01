@@ -1,0 +1,22 @@
+CC=gcc
+CFLAGS=-Wall --std=c99
+OBJ=hangman.o parser.o
+EXE=hangman
+DBGFLAGS=-g
+
+all: $(EXE)
+
+debug: CFLAGS+=$(DBGFLAGS)
+debug: $(EXE)
+
+$(EXE): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $^
+
+.PHONY: clean
+
+clean:
+	rm *.o
+	rm hangman
