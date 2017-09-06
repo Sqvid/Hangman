@@ -11,7 +11,7 @@ void drawMan(int missNumber){
 		case 0 :
 			puts("\n\n");
 			printf("             ooooooooooooooooooooooo       \n");
-			printf("	    /00000000000000000000000       \n");
+			printf("            /00000000000000000000000       \n");
 			printf("            00               0    00       \n");
 			printf("            00                0   00       \n");
 			printf("            00                 0  00       \n");
@@ -44,7 +44,7 @@ void drawMan(int missNumber){
 		case 1 :
 			puts("\n\n");
 			printf("             ooooooooooooooooooooooo       \n");
-			printf("	    /00000000000000000000000       \n");
+			printf("            /00000000000000000000000       \n");
 			printf("            00               0    00       \n");
 			printf("            00                0   00       \n");
 			printf("            00                 0  00       \n");
@@ -77,7 +77,7 @@ void drawMan(int missNumber){
 		case 2:
 			puts("\n\n");
 			printf("             ooooooooooooooooooooooo       \n");
-			printf("	    /00000000000000000000000       \n");
+			printf("            /00000000000000000000000       \n");
 			printf("            00               0    00       \n");
 			printf("            00                0   00       \n");
 			printf("            00                 0  00       \n");
@@ -110,7 +110,7 @@ void drawMan(int missNumber){
 		case 3:
 			puts("\n\n");
 			printf("             ooooooooooooooooooooooo       \n");
-			printf("	    /00000000000000000000000       \n");
+			printf("            /00000000000000000000000       \n");
 			printf("            00               0    00       \n");
 			printf("            00                0   00       \n");
 			printf("            00                 0  00       \n");
@@ -143,7 +143,7 @@ void drawMan(int missNumber){
 		case 4:
 			puts("\n\n");
 			printf("             ooooooooooooooooooooooo       \n");
-			printf("	    /00000000000000000000000       \n");
+			printf("            /00000000000000000000000       \n");
 			printf("            00               0    00       \n");
 			printf("            00                0   00       \n");
 			printf("            00                 0  00       \n");
@@ -176,7 +176,7 @@ void drawMan(int missNumber){
 		case 5:
 			puts("\n\n");
 			printf("             ooooooooooooooooooooooo       \n");
-			printf("	    /00000000000000000000000       \n");
+			printf("            /00000000000000000000000       \n");
 			printf("            00               0    00       \n");
 			printf("            00                0   00       \n");
 			printf("            00                 0  00       \n");
@@ -209,7 +209,7 @@ void drawMan(int missNumber){
 		case 6:
 			puts("\n\n");
 			printf("             ooooooooooooooooooooooo       \n");
-			printf("	    /00000000000000000000000       \n");
+			printf("            /00000000000000000000000       \n");
 			printf("            00               0    00       \n");
 			printf("            00                0   00       \n");
 			printf("            00                 0  00       \n");
@@ -242,7 +242,7 @@ void drawMan(int missNumber){
 		case 7:
 			puts("\n\n");
 			printf("             ooooooooooooooooooooooo       \n");
-			printf("	    /00000000000000000000000       \n");
+			printf("            /00000000000000000000000       \n");
 			printf("            00               0    00       \n");
 			printf("            00                0   00       \n");
 			printf("            00                 0  00       \n");

@@ -5,7 +5,7 @@ int main(void){
 	int lineNumber, wordSize, misses=0, hits=0, scoreChange;
 	char guess, answer[25], blankSpace[50], correct[25]="                       \0" , wrong[7]="      \0";
 	FILE *wordlist; 
-	wordlist=fopen("./wordlist.txt", "r");
+	wordlist=fopen("wordlist.txt", "r");
 	
 	if(wordlist==NULL){
 		puts("Sorry failed to read the wordlist.");

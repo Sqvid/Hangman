@@ -15,8 +15,11 @@ $(EXE): $(OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^
 
-.PHONY: clean
+.PHONY: clean uncluttered
 
 clean:
-	rm *.o
 	rm hangman
+	rm *.o
+
+uncluttered:
+	rm *.o

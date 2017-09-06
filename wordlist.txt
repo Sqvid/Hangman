@@ -318,7 +318,6 @@ bid
 bidet
 bifocals
 big
-bijou
 bike
 bikini
 bill
@@ -469,7 +468,6 @@ bumper
 bun
 bunch
 bungalow
-bunghole
 bunkhouse
 burglar
 burlesque
@@ -479,7 +477,6 @@ bus
 bush
 business
 bust
-bustle
 butane
 butcher
 butter
@@ -500,7 +497,6 @@ cadet
 cafe
 caftan
 cake
-calcification
 calculation
 calculator
 calculus
@@ -685,7 +681,6 @@ chopstick
 chord
 chowder
 chrome
-chromolithograph
 chronograph
 chronometer
 chub
@@ -838,6 +833,7 @@ congo
 congress
 congressman
 congressperson
+congresswoman
 conifer
 connection
 consent
@@ -853,7 +849,6 @@ construction
 consul
 consulate
 contact
-contact lens
 contagion
 content
 contest
@@ -870,7 +865,6 @@ convert
 convertible
 cook
 cookie
-coonskin
 cope
 copper
 copy
@@ -898,9 +892,7 @@ couch
 cougar
 cough
 council
-councilman
 councilor
-councilperson
 count
 counter
 countess
@@ -911,7 +903,6 @@ courage
 course
 court
 cousin
-covariate
 cover
 coverall
 cow
@@ -941,7 +932,6 @@ credenza
 credit
 creditor
 creek
-creme brulee
 crest
 crew
 crib
@@ -2216,9 +2206,7 @@ lute
 luttuce
 lycra
 lye
-lymphocyte
 lynx
-lyocell
 lyre
 lyric
 macadamia
@@ -2972,7 +2960,6 @@ psychiatrist
 psychoanalyst
 psychologist
 psychology
-ptarmigan
 public
 publicity
 publisher
