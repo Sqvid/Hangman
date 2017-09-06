@@ -44,19 +44,20 @@ int main(void){
 		while(1){
 			printf("\n    Enter your guess: ");
 			scanf(" %c", &guess );
+			puts("\n\n----------------------------------------------------------------");
 
-			if(isalpha(guess)){			//This block checks the validity of the guess
-				for(int j=0; j<7; j++){		//and protects against repeated guesses of the same letter.
+			if(isalpha(guess)){		//This block checks the validity of the guess
+				if(isupper(guess)){	//Makes uppercase guesses valid.
+					guess=tolower(guess);
+				}
+
+				for(int j=0; j<7; j++){	//and protects against repeated guesses of the same letter.
 					if(toupper(guess)==wrong[j]){
 						printf("****You have already guessed that!****");
 						misses--;
 						break;
 					}
-				}
-				
-				for(int k=0; k<wordSize; k++){
-					if(toupper(guess)==correct[k]){
-						printf("****You have already guessed that!****");
+				} for(int k=0; k<wordSize; k++){ if(toupper(guess)==correct[k]){ printf("****You have already guessed that!****");
 						hits--;
 						break;
 					}
@@ -66,19 +67,14 @@ int main(void){
 			}
 
 			else{
-				//puts("\n\n    ********************************");
 				puts("\n    ****Sorry! Only alphabets allowed!****");
-				//puts("    *Please try again.             *");
-				//puts("    ********************************\n");
 			}
 		}
-
-		puts("\n\n----------------------------------------------------------------");
 
 		scoreChange=checkGuess(guess, answer);
 
 		{
-			if(scoreChange==0){				//Block for wrong guesses.
+			if(scoreChange==0){							//Block for wrong guesses.
 				wrong[misses]=toupper(guess);
 				misses++;
 				drawMan(misses);
@@ -88,7 +84,7 @@ int main(void){
 				puts("    ************************************************************");
 			}
 
-			else{						//Block for correct guesses.
+			else{									//Block for correct guesses.
 				correct[hits]=toupper(guess);
 				hits=hits+scoreChange;
 				drawMan(misses);
