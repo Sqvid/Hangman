@@ -2,6 +2,7 @@ CC=gcc
 CFLAGS=-Wall --std=c99
 OBJ=hangman.o parser.o graphics.o
 EXE=hangman
+TXT=wordlist.txt
 DBGFLAGS=-g
 
 all: $(EXE)
@@ -15,7 +16,7 @@ $(EXE): $(OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^
 
-.PHONY: clean uncluttered
+.PHONY: clean uncluttered package
 
 clean:
 	rm hangman
@@ -23,3 +24,8 @@ clean:
 
 uncluttered:
 	rm *.o
+
+package:
+	make
+	zip $(EXE).zip *.c *.h Makefile $(EXE) $(TXT)
+	make uncluttered

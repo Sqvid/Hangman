@@ -53,5 +53,5 @@ int checkGuess(char guess, char* answer){		//Checks if a guess is a hit or a mis
 		}
 	}
 
-	return count;
-}
+	return count;					//Zero means the guess was wrong. A nonxero value
+}							//indicates the number of hits.

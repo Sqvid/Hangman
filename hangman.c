@@ -3,12 +3,12 @@
 int main(void){
 
 	int lineNumber, wordSize, misses=0, hits=0, scoreChange;
-	char guess, answer[25], blankSpace[50], correct[25]="                       \0" , wrong[7]="      \0";
+	char guess, answer[25], blankSpace[50], wrong[8]="       \0", correct[25]="                        \0";
 	FILE *wordlist; 
 	wordlist=fopen("wordlist.txt", "r");
 	
 	if(wordlist==NULL){
-		puts("Sorry failed to read the wordlist.");
+		puts("Sorry failed to read the wordlist.\n");
 		exit(1);
 	}
 
@@ -17,7 +17,6 @@ int main(void){
 	loadWord(lineNumber, wordlist, answer);		//findWord() finds and loads the selected entry.
 
 	wordSize=strlen(answer);
-	//printf("%s\n", answer);
 	
 	for(int i=0; i<=2*(wordSize-1); i++){		//(wordSize-1) becuase arrays count from 0. Multiplied by 2 because we want spacing.
 		if(i%2==0){
@@ -40,8 +39,8 @@ int main(void){
 		scanf(" %c", &guess );
 		puts("\n\n----------------------------------------------------------------");
 
-		if(isalpha(guess)){
-			for(int j=0; j<7; j++){
+		if(isalpha(guess)){			//This block checks the validity of the guess
+			for(int j=0; j<7; j++){		//and protects against repeated guesses of the same letter.
 				if(toupper(guess)==wrong[j]){
 					printf("****You have already guessed that!****");
 					misses--;
@@ -60,14 +59,14 @@ int main(void){
 
 		else{
 			puts("\n    Sorry! Only alphabets allowed!");
-			puts("    Using other non-alphabetic characters terminates the game :(\n\n");
+			puts("    Using non-alphabetic characters terminates the game :(\n\n");
 			exit(2);
 		}
 
 		scoreChange=checkGuess(guess, answer);
 
 		{
-			if(scoreChange==0){
+			if(scoreChange==0){				//Block for wrong guesses.
 				wrong[misses]=toupper(guess);
 				misses++;
 				drawMan(misses);
@@ -76,7 +75,7 @@ int main(void){
 				
 			}
 
-			else{
+			else{						//Block for correct guesses.
 				correct[hits]=toupper(guess);
 				hits=hits+scoreChange;
 				drawMan(misses);
@@ -85,7 +84,7 @@ int main(void){
 			}
 		}
 
-		printf("\n\n    %s\n\n", fillBlanks(guess, answer, blankSpace));
+		printf("\n\n    %s\n\n", fillBlanks(guess, answer, blankSpace));		//Fill in blanks if needed.
 	}
 
 	if(misses==7)
