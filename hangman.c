@@ -28,40 +28,52 @@ int main(void){
 		}
 	}
 
-	drawMan(0);
-	printf("\n\n    The word is %d letters long.\n", wordSize);
+	drawMan(0);					//Initialises the hangman graphic.
+
+	puts("\n\n    ************************************************************");
+	    puts("    *Incorrect guesses so far:                                 *");
+	    puts("    *Correct guesses so far:                                   *");
+	    puts("    ************************************************************");
+
+	printf("\n    The word is %d letters long.\n", wordSize);
 	printf("\n    %s\n\n", blankSpace);
 
 
 
 	while(misses<7 && hits<wordSize){		//This block actually runs the game.
-		printf("\n    Enter your guess: ");
-		scanf(" %c", &guess );
+		while(1){
+			printf("\n    Enter your guess: ");
+			scanf(" %c", &guess );
+
+			if(isalpha(guess)){			//This block checks the validity of the guess
+				for(int j=0; j<7; j++){		//and protects against repeated guesses of the same letter.
+					if(toupper(guess)==wrong[j]){
+						printf("****You have already guessed that!****");
+						misses--;
+						break;
+					}
+				}
+				
+				for(int k=0; k<wordSize; k++){
+					if(toupper(guess)==correct[k]){
+						printf("****You have already guessed that!****");
+						hits--;
+						break;
+					}
+				}
+
+				break;
+			}
+
+			else{
+				//puts("\n\n    ********************************");
+				puts("\n    ****Sorry! Only alphabets allowed!****");
+				//puts("    *Please try again.             *");
+				//puts("    ********************************\n");
+			}
+		}
+
 		puts("\n\n----------------------------------------------------------------");
-
-		if(isalpha(guess)){			//This block checks the validity of the guess
-			for(int j=0; j<7; j++){		//and protects against repeated guesses of the same letter.
-				if(toupper(guess)==wrong[j]){
-					printf("****You have already guessed that!****");
-					misses--;
-					break;
-				}
-			}
-			
-			for(int k=0; k<wordSize; k++){
-				if(toupper(guess)==correct[k]){
-					printf("****You have already guessed that!****");
-					hits--;
-					break;
-				}
-			}
-		}
-
-		else{
-			puts("\n    Sorry! Only alphabets allowed!");
-			puts("    Using non-alphabetic characters terminates the game :(\n\n");
-			exit(2);
-		}
 
 		scoreChange=checkGuess(guess, answer);
 
@@ -70,17 +82,22 @@ int main(void){
 				wrong[misses]=toupper(guess);
 				misses++;
 				drawMan(misses);
-				printf("\n\n    Incorrect guesses so far: %s\n", wrong);
-				printf("    Correct guesses so far: %s\n", correct);
-				
+				puts("\n\n    ************************************************************");
+				printf("    *Incorrect guesses so far: %s                         *\n", wrong);
+				printf("    *Correct guesses so far: %s          *\n", correct);
+				puts("    ************************************************************");
 			}
 
 			else{						//Block for correct guesses.
 				correct[hits]=toupper(guess);
 				hits=hits+scoreChange;
 				drawMan(misses);
-				printf("\n\n    Incorrect guesses so far: %s\n", wrong);
-				printf("    Correct guesses so far: %s\n", correct);
+				puts("\n\n    ************************************************************");
+				printf("    *Incorrect guesses so far: %s                         *\n", wrong);
+				printf("    *Correct guesses so far: %s          *\n", correct);
+				puts("    ************************************************************");
+				//printf("\n\n    Incorrect guesses so far: %s\n", wrong);
+				//printf("    Correct guesses so far: %s\n", correct);
 			}
 		}
 
