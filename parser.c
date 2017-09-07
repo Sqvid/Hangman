@@ -44,14 +44,14 @@ char* fillBlanks(char guess, char* answer, char blanks[]){
 }
 
 
-int checkGuess(char guess, char* answer){		//Checks if a guess is a hit or a miss.
-	int wordSize=strlen(answer), count=0;
+int checkGuess(char guess, char* string){		//Checks if a guess is present in a string.
+	int wordSize=strlen(string), count=0;
 
 	for(int i=0; i<=(wordSize-1); i++){		//wordsize - 1 becaue arrays count from 0.
-		if(answer[i]==guess){
-			count++; 			//Guess was successful.
+		if(string[i]==guess){
+			count++;
 		}
 	}
 
-	return count;					//Zero means the guess was wrong. A nonxero value
-}							//indicates the number of hits.
+	return count;					//The number of times the guess appeared in the string.
+}

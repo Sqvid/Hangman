@@ -6,11 +6,13 @@
 	#include <string.h>
 	#include <time.h>
 	#include <ctype.h>
+	#include <unistd.h>
 	#define LIST_SIZE 4256		//This number defines the number of items in the wordlist.
 
 	void loadWord(int line_number, FILE *fileptr, char outputArray[]);
 	char* fillBlanks(char guess, char* answer, char* blanks);
-	int checkGuess(char guess, char* answer);
-	
+	int checkGuess(char guess, char* string);
+
+	void printTitle(void);
 	void drawMan(int missNumber);
 #endif
