@@ -1,6 +1,7 @@
 CC=gcc
 CFLAGS=-Wall --std=c99
-OBJ=hangman.o parser.o graphics.o
+LDFLAGS=-lncurses
+OBJ=hangman.o parser.o #graphics.o
 EXE=hangman
 TXT=wordlist.txt
 DBGFLAGS=-g
@@ -11,10 +12,10 @@ debug: CFLAGS+=$(DBGFLAGS)
 debug: $(EXE)
 
 $(EXE): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $^
+	$(CC) $(CFLAGS) -c $^ $(LDFLAGS)
 
 .PHONY: clean uncluttered package
 
