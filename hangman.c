@@ -35,9 +35,9 @@ int main(void){
 		exit(1);
 	}
 
-	srand(time(NULL));
 	//This randomly picks an entry number for the wordlist.	
 	//loadWord() finds and loads the selected entry.
+	srand(time(NULL));
 	lineNumber=rand()%(LIST_SIZE - 1);
 	loadWord(lineNumber, wordlist, answer);
 	wordSize=strlen(answer);
@@ -54,21 +54,32 @@ int main(void){
 		}
 	}
 
-	while(misses < 7 && hits < wordSize){		//This block actually runs the game.
+	mvprintw(LINES - 3, 4, " %s", blankSpace);
+	mvwprintw(scoreWindow, 1, 2, "Incorrect guesses so far:");
+	mvwprintw(scoreWindow, 2, 2, "Correct guesses so far:");
+	wrefresh(scoreWindow);
+
+	//This block actually runs the game.
+	while(misses < 7 && hits < wordSize){
 		while(1){
-			int past_misses=0, past_hits=0;	//These variables are used to guard against repeated guesses.
+			//These variables are used to guard against repeated guesses.
+			int past_misses=0, past_hits=0;	
 
 			mvprintw(1, 0, "Enter your guess: ");
 			refresh();
 			scanw(" %c", &guess );
 
-			if(isalpha(guess)){						//This block checks the validity of the guess
-				if(isupper(guess)){					//Makes uppercase guesses valid.
+			//This block checks the validity of the guess
+			//Makes uppercase guesses valid.
+			if(isalpha(guess)){						
+				if(isupper(guess)){					
 					guess=tolower(guess);
 				}
-			
-				past_misses=checkGuess(toupper(guess), wrong);		//checkGuess() will return zero only if
-				past_hits=checkGuess(toupper(guess), correct);		//the guess is not a repeat.
+
+				//checkGuess() will return zero only if
+				//the guess is not a repeat.
+				past_misses=checkGuess(toupper(guess), wrong);		
+				past_hits=checkGuess(toupper(guess), correct);		
 
 				if(past_misses>0 || past_hits>0){
 					mvprintw(0, 0, " ****You have already guessed that!****");
@@ -89,26 +100,22 @@ int main(void){
 		{
 			static int i_wrong=0, i_correct=0;
 
-			if(scoreChange==0){							//Block for wrong guesses.
+			//Block for wrong guesses.
+			if(scoreChange==0){
 				wrong[i_wrong]=toupper(guess);
 				i_wrong++;
 				misses++;
-				//puts("\n\n    ************************************************************");
 				mvwprintw(scoreWindow, 1, 2, "Incorrect guesses so far: %s", wrong);
 				mvwprintw(scoreWindow, 2, 2, "Correct guesses so far: %s", correct);
-				//puts("    ************************************************************");
 			}
 
-			else{									//Block for correct guesses.
+			//Block for correct guesses.
+			else{
 				correct[i_correct]=toupper(guess);
 				i_correct++;
 				hits=hits+scoreChange;
-				//puts("\n----------------------------------------------------------------------------------------");
-				//drawMan(misses);
-				//puts("\n\n    ************************************************************");
 				mvwprintw(scoreWindow, 1, 2, "Incorrect guesses so far: %s", wrong);
 				mvwprintw(scoreWindow, 2, 2, "Correct guesses so far: %s", correct);
-				//puts("    ************************************************************");
 			}
 
 			wclrtoeol(scoreWindow);
@@ -116,13 +123,26 @@ int main(void){
 			wrefresh(scoreWindow);
 		}
 
-		mvprintw(LINES - 3, 4, " %s", fillBlanks(guess, answer, blankSpace));		//Fill in blanks if needed.
+		//Fill in blanks if needed.
+		mvprintw(LINES - 3, 4, " %s", fillBlanks(guess, answer, blankSpace));
+	}
+
+	clear();
+	destroyWindow(hangmanWindow);
+	destroyWindow(scoreWindow);
+
+	if(misses==7){
+		//THIS CENTERING WILL NOT WORK. CHANGE ASAP.
+		mvprintw(LINES / 2, XCENTRE(23), "The word was %s! Better luck next time.", answer);
+	}
+
+	else if(hits==wordSize){
+		//THIS CENTERING WILL NOT WORK. CHANGE ASAP.
+		mvprintw(LINES / 2, XCENTRE(39), "Congratulations! You live another day.");
 	}
 
 	refresh();
 	getch();
-	destroyWindow(hangmanWindow);
-	destroyWindow(scoreWindow);
 	endwin();
 }
 
@@ -137,6 +157,7 @@ WINDOW* createWindow(int height, int width, int starty, int startx){
 
 void destroyWindow(WINDOW* targetWindow){
 	wborder(targetWindow, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+	wclear(targetWindow);
 	wrefresh(targetWindow);
 	delwin(targetWindow);
 }
