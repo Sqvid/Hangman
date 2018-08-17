@@ -14,5 +14,5 @@
 	int checkGuess(char guess, char* string);
 
 	void printTitle(void);
-	void drawMan(int missNumber);
+	void drawMan(int missNumber, WINDOW* hangmanWindow);
 #endif

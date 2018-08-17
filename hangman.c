@@ -1,9 +1,9 @@
 #include "hangman.h"
 
-#define FIGHEIGHT 29
-#define FIGWIDTH 45
+#define FIGHEIGHT 30
+#define FIGWIDTH 47
 #define SCOREHEIGHT 4
-#define SCOREWIDTH 45
+#define SCOREWIDTH 47
 
 #define YCENTRE(height) (LINES - (height)) / 2
 #define XCENTRE(width) (COLS - (width)) / 2
@@ -54,9 +54,11 @@ int main(void){
 		}
 	}
 
+	drawMan(0, hangmanWindow);
 	mvprintw(LINES - 3, 4, " %s", blankSpace);
 	mvwprintw(scoreWindow, 1, 2, "Incorrect guesses so far:");
 	mvwprintw(scoreWindow, 2, 2, "Correct guesses so far:");
+	wrefresh(hangmanWindow);
 	wrefresh(scoreWindow);
 
 	//This block actually runs the game.
@@ -105,6 +107,7 @@ int main(void){
 				wrong[i_wrong]=toupper(guess);
 				i_wrong++;
 				misses++;
+				drawMan(misses, hangmanWindow);
 				mvwprintw(scoreWindow, 1, 2, "Incorrect guesses so far: %s", wrong);
 				mvwprintw(scoreWindow, 2, 2, "Correct guesses so far: %s", correct);
 			}
@@ -127,6 +130,7 @@ int main(void){
 		mvprintw(LINES - 3, 4, " %s", fillBlanks(guess, answer, blankSpace));
 	}
 
+	getch();
 	clear();
 	destroyWindow(hangmanWindow);
 	destroyWindow(scoreWindow);
