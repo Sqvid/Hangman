@@ -7,20 +7,35 @@
 #include "hangman.h"
 
 
-void printTitle(void){
-	puts("\n");
-	puts("88                                                                                      ");
-	puts("88                                                                                      ");
-	puts("88                                                                                      ");
-	puts("88,dPPYba,  ,adPPYYba, 8b,dPPYba,   ,adPPYb,d8 88,dPYba,,adPYba,  ,adPPYYba, 8b,dPPYba, ");
-	puts("88P'    `8a ``     `Y8 88P'   ``8a a8`    `Y88 88P'   `88`    `8a ``     `Y8 88P'   ``8a");
-	puts("88       88 ,adPPPPP88 88       88 8b       88 88      88      88 ,adPPPPP88 88       88");
-	puts("88       88 88,    ,88 88       88 `8a,   ,d88 88      88      88 88,    ,88 88       88");
-	puts("88       88 ``8bbdP`Y8 88       88  ``YbbdP`Y8 88      88      88 ``8bbdP`Y8 88       88");
-	puts("                                    aa,    ,88                                          ");
-	puts("                                     `Y8bbdP`                                           ");
+//void printTitle(void){
+//	puts("\n");
+//	puts("88                                                                                      ");
+//	puts("88                                                                                      ");
+//	puts("88                                                                                      ");
+//	puts("88,dPPYba,  ,adPPYYba, 8b,dPPYba,   ,adPPYb,d8 88,dPYba,,adPYba,  ,adPPYYba, 8b,dPPYba, ");
+//	puts("88P'    `8a ``     `Y8 88P'   ``8a a8`    `Y88 88P'   `88`    `8a ``     `Y8 88P'   ``8a");
+//	puts("88       88 ,adPPPPP88 88       88 8b       88 88      88      88 ,adPPPPP88 88       88");
+//	puts("88       88 88,    ,88 88       88 `8a,   ,d88 88      88      88 88,    ,88 88       88");
+//	puts("88       88 ``8bbdP`Y8 88       88  ``YbbdP`Y8 88      88      88 ``8bbdP`Y8 88       88");
+//	puts("                                    aa,    ,88                                          ");
+//	puts("                                     `Y8bbdP`                                           ");
+//}
+
+WINDOW* createWindow(int height, int width, int starty, int startx){
+	WINDOW* localWindow = newwin(height, width, starty, startx);
+
+	box(localWindow, 0, 0);
+	wrefresh(localWindow);
+
+	return localWindow;
 }
 
+void destroyWindow(WINDOW* targetWindow){
+	wborder(targetWindow, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+	wclear(targetWindow);
+	wrefresh(targetWindow);
+	delwin(targetWindow);
+}
 
 void drawMan(int missNumber, WINDOW* hangmanWindow){
 	switch(missNumber){
