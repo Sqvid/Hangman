@@ -16,8 +16,8 @@ int main(void){
 
 	int lineNumber, wordSize, misses = 0, hits = 0, scoreChange, exitmsgy, exitmsgx;
 	char guess, answer[25], blankSpace[50] = {'\0'}, wrong[8], correct[25], exitmsg[128];
-	char repeatWarning[] = "****You have already guessed that!****";
-	char nonAlphaWarning[] = "****Sorry! Only alphabets allowed!****";
+	char repeatWarning[] = "**** You have already guessed that! ****";
+	char nonAlphaWarning[] = "**** Sorry! Only alphabets allowed! ****";
 
 	//Initialises these arrays with spaces so that they print correctly.
 	memset(wrong, ' ', 7);
@@ -83,7 +83,7 @@ int main(void){
 				past_hits = checkGuess(toupper(guess), correct);
 
 				if(past_misses > 0 || past_hits > 0){
-					mvprintw(0, XCENTRE(strlen(repeatWarning)), repeatWarning);
+					mvprintw(2, XCENTRE(strlen(repeatWarning)), repeatWarning);
 				}
 
 				else{
@@ -94,7 +94,7 @@ int main(void){
 			}
 
 			else{
-				mvprintw(0, XCENTRE(strlen(nonAlphaWarning)), nonAlphaWarning);
+				mvprintw(2, XCENTRE(strlen(nonAlphaWarning)), nonAlphaWarning);
 			}
 		}
 
