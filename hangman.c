@@ -2,7 +2,9 @@
 
 int main(void){
 	initscr();
-	raw();
+	cbreak();
+	noecho();
+	curs_set(0);
 	refresh();
 
 	WINDOW *hangmanWindow, *scoreWindow;
@@ -14,13 +16,15 @@ int main(void){
 
 	int lineNumber, wordSize, misses = 0, hits = 0, scoreChange, exitmsgy, exitmsgx;
 	char guess, answer[25], blankSpace[50] = {'\0'}, wrong[8], correct[25], exitmsg[128];
+	char repeatWarning[] = "****You have already guessed that!****";
+	char nonAlphaWarning[] = "****Sorry! Only alphabets allowed!****";
 
 	//Initialises these arrays with spaces so that they print correctly.
 	memset(wrong, ' ', 7);
 	memset(correct, ' ', 24);
 	FILE *wordlist; 
 	wordlist = fopen("wordlist", "r");
-	
+
 	if(wordlist == NULL){
 		printw("Sorry failed to read the wordlist.\n");
 		refresh();
@@ -29,7 +33,7 @@ int main(void){
 		exit(1);
 	}
 
-	//This randomly picks an entry number for the wordlist.	
+	//This randomly picks an entry number for the wordlist.
 	//loadWord() finds and loads the selected entry.
 	srand(time(NULL));
 	lineNumber = rand()%(LIST_SIZE - 1);
@@ -42,14 +46,14 @@ int main(void){
 		if(i%2 == 0){
 			blankSpace[i] = '_';
 		}
-		
+
 		else{
 			blankSpace[i] = ' ';
 		}
 	}
 
 	drawMan(0, hangmanWindow);
-	mvprintw(LINES - 3, 4, " %s", blankSpace);
+	mvprintw(LINES - 3, XCENTRE(strlen(blankSpace)), " %s", blankSpace);
 	mvwprintw(scoreWindow, 1, 2, "Incorrect guesses so far:");
 	mvwprintw(scoreWindow, 2, 2, "Correct guesses so far:");
 	wrefresh(hangmanWindow);
@@ -59,26 +63,27 @@ int main(void){
 	while(misses < 7 && hits < wordSize){
 		while(1){
 			//These variables are used to guard against repeated guesses.
-			int past_misses = 0, past_hits = 0;	
+			int past_misses = 0, past_hits = 0;
 
-			mvprintw(1, 0, "Enter your guess: ");
+			//mvprintw(1, 0, "Enter your guess: ");
 			refresh();
-			scanw(" %c", &guess );
+			//scanw(" %c", &guess );
+			guess = getch();
 
 			//This block checks the validity of the guess
 			//Makes uppercase guesses valid.
-			if(isalpha(guess)){						
-				if(isupper(guess)){					
+			if(isalpha(guess)){
+				if(isupper(guess)){
 					guess = tolower(guess);
 				}
 
 				//checkGuess() will return zero only if
 				//the guess is not a repeat.
-				past_misses = checkGuess(toupper(guess), wrong);		
-				past_hits = checkGuess(toupper(guess), correct);		
+				past_misses = checkGuess(toupper(guess), wrong);
+				past_hits = checkGuess(toupper(guess), correct);
 
 				if(past_misses > 0 || past_hits > 0){
-					mvprintw(0, 0, " ****You have already guessed that!****");
+					mvprintw(0, XCENTRE(strlen(repeatWarning)), repeatWarning);
 				}
 
 				else{
@@ -89,7 +94,7 @@ int main(void){
 			}
 
 			else{
-				mvprintw(0, 0, "****Sorry! Only alphabets allowed!****");
+				mvprintw(0, XCENTRE(strlen(nonAlphaWarning)), nonAlphaWarning);
 			}
 		}
 
@@ -123,14 +128,14 @@ int main(void){
 		}
 
 		//Fill in blanks if needed.
-		mvprintw(LINES - 3, 4, " %s", fillBlanks(guess, answer, blankSpace));
+		mvprintw(LINES - 3, XCENTRE(strlen(blankSpace)), " %s", fillBlanks(guess, answer, blankSpace));
 	}
 
 	getch();
 	clear();
 	destroyWindow(hangmanWindow);
 	destroyWindow(scoreWindow);
-	
+
 	if(misses == 7){
 		sprintf(exitmsg, "The word was %s! Better luck next time.", answer);
 	}
@@ -141,7 +146,6 @@ int main(void){
 
 	exitmsgy = (LINES - 1) / 2;
 	exitmsgx = (COLS - strlen(exitmsg)) / 2;
-	curs_set(0);
 	mvprintw(exitmsgy, exitmsgx, exitmsg);
 
 	refresh();
