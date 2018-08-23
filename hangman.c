@@ -82,6 +82,8 @@ int main(void){
 				}
 
 				else{
+					move(0, 0);
+					clrtoeol();
 					break;
 				}
 			}
@@ -139,6 +141,7 @@ int main(void){
 
 	exitmsgy = (LINES - 1) / 2;
 	exitmsgx = (COLS - strlen(exitmsg)) / 2;
+	curs_set(0);
 	mvprintw(exitmsgy, exitmsgx, exitmsg);
 
 	refresh();
