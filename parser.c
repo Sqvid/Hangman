@@ -13,7 +13,7 @@ void loadWord(int line_number, FILE *infile, char outputArray[]){		//loads the s
 
 	if(infile == NULL){
 		printf("Error with findLine(). Please debug.");
-		
+
 	}
 
 	else{
@@ -34,7 +34,8 @@ void loadWord(int line_number, FILE *infile, char outputArray[]){		//loads the s
 char* fillBlanks(char guess, char* answer, char blanks[]){
 	int wordSize=strlen(answer);
 
-	for(int i=0; i<=(wordSize-1); i++){		//wordsize - 1 becaue arrays count from 0.
+	//wordsize - 1 becaue arrays count from 0.
+	for(int i=0; i<=(wordSize-1); i++){
 		if(answer[i]==guess){
 			blanks[2*i]=guess;
 		}
@@ -43,15 +44,16 @@ char* fillBlanks(char guess, char* answer, char blanks[]){
 	return blanks;
 }
 
-
-int checkGuess(char guess, char* string){		//Checks if a guess is present in a string.
+//Checks if a guess is present in a string.
+int checkGuess(char guess, char* string){
 	int wordSize=strlen(string), count=0;
 
-	for(int i=0; i<=(wordSize-1); i++){		//wordsize - 1 becaue arrays count from 0.
+	for(int i=0; i<=(wordSize-1); i++){
 		if(string[i]==guess){
 			count++;
 		}
 	}
 
-	return count;					//The number of times the guess appeared in the string.
+	//The number of times the guess appeared in the string.
+	return count;
 }

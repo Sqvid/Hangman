@@ -15,7 +15,7 @@ $(EXE): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $^ $(LDFLAGS)
+	$(CC) $(CFLAGS) -c $^
 
 .PHONY: clean uncluttered package
 

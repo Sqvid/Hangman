@@ -6,15 +6,14 @@
 	#include <string.h>
 	#include <time.h>
 	#include <ctype.h>
-	#include <unistd.h>
 
-	#define LIST_SIZE 4256		//This number defines the number of items in the wordlist.
+	#define LIST_SIZE 4256
 	#define FIGHEIGHT 30
 	#define FIGWIDTH 47
 	#define SCOREHEIGHT 4
 	#define SCOREWIDTH 47
 	#define WARNINGY 2
-	
+
 	#define YCENTRE(height) (LINES - (height)) / 2
 	#define XCENTRE(width) (COLS - (width)) / 2
 
