@@ -13,6 +13,7 @@
 	#define FIGWIDTH 47
 	#define SCOREHEIGHT 4
 	#define SCOREWIDTH 47
+	#define WARNINGY 2
 	
 	#define YCENTRE(height) (LINES - (height)) / 2
 	#define XCENTRE(width) (COLS - (width)) / 2

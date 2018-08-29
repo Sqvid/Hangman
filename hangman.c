@@ -14,7 +14,7 @@ int main(void){
 			YCENTRE(FIGHEIGHT + SCOREHEIGHT) + FIGHEIGHT,\
 			XCENTRE(SCOREWIDTH));
 
-	int lineNumber, wordSize, misses = 0, hits = 0, scoreChange, exitmsgy, exitmsgx;
+	int lineNumber, wordSize, misses = 0, hits = 0, scoreChange;
 	char guess, answer[25], blankSpace[50] = {'\0'}, wrong[8], correct[25], exitmsg[128];
 	char repeatWarning[] = "**** You have already guessed that! ****";
 	char nonAlphaWarning[] = "**** Sorry! Only alphabets allowed! ****";
@@ -22,7 +22,7 @@ int main(void){
 	//Initialises these arrays with spaces so that they print correctly.
 	memset(wrong, ' ', 7);
 	memset(correct, ' ', 24);
-	FILE *wordlist; 
+	FILE *wordlist;
 	wordlist = fopen("wordlist", "r");
 
 	if(wordlist == NULL){
@@ -83,18 +83,18 @@ int main(void){
 				past_hits = checkGuess(toupper(guess), correct);
 
 				if(past_misses > 0 || past_hits > 0){
-					mvprintw(2, XCENTRE(strlen(repeatWarning)), repeatWarning);
+					mvprintw(WARNINGY, XCENTRE(strlen(repeatWarning)), repeatWarning);
 				}
 
 				else{
-					move(0, 0);
+					move(WARNINGY, 0);
 					clrtoeol();
 					break;
 				}
 			}
 
 			else{
-				mvprintw(2, XCENTRE(strlen(nonAlphaWarning)), nonAlphaWarning);
+				mvprintw(WARNINGY, XCENTRE(strlen(nonAlphaWarning)), nonAlphaWarning);
 			}
 		}
 
@@ -128,7 +128,8 @@ int main(void){
 		}
 
 		//Fill in blanks if needed.
-		mvprintw(LINES - 3, XCENTRE(strlen(blankSpace)), " %s", fillBlanks(guess, answer, blankSpace));
+		mvprintw(LINES - 3, XCENTRE(strlen(blankSpace)), " %s",\
+						fillBlanks(guess, answer, blankSpace));
 	}
 
 	getch();
@@ -144,8 +145,8 @@ int main(void){
 		strcpy(exitmsg, "Congratulations! You live another day.");
 	}
 
-	exitmsgy = (LINES - 1) / 2;
-	exitmsgx = (COLS - strlen(exitmsg)) / 2;
+	int exitmsgy = (LINES - 1) / 2;
+	int exitmsgx = (COLS - strlen(exitmsg)) / 2;
 	mvprintw(exitmsgy, exitmsgx, exitmsg);
 
 	refresh();
