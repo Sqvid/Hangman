@@ -3,7 +3,7 @@ CFLAGS=-Wall --std=c99
 LDFLAGS=-lncurses
 OBJ=hangman.o parser.o graphics.o
 EXE=hangman
-TXT=wordlist.txt
+TXT=wordlist
 DBGFLAGS=-g
 
 all: $(EXE)
