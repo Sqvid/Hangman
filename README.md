@@ -1,2 +1,2 @@
 # Hangman
-A really simple curses-free terminal based hangman game
+A really simple curses implementation of hangman. 
