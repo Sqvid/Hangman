@@ -6,8 +6,8 @@
 
 #include "hangman.h"
 
-
-void loadWord(int line_number, FILE *infile, char outputArray[]){		//loads the selected word into a string.
+//loads the selected word into a string.
+void loadWord(int line_number, FILE *infile, char outputArray[]){
 	int count=0;
 	char result[512];
 
